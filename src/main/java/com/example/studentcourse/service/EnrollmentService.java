@@ -1,5 +1,6 @@
 package com.example.studentcourse.service;
 
+import com.example.studentcourse.dto.EnrollmentRequestDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,4 +125,33 @@ public class EnrollmentService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    // update enrollment by id
+    public EnrollmentDTO updateEnrollment(Long id, EnrollmentRequestDTO requestDTO) {
+        Enrollment enrollment = enrollmentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Enrollment not found"));
+
+        enrollment.setGrade(requestDTO.getGrade());
+        enrollment.setAttendance(requestDTO.getAttendance());
+
+        Enrollment updated = enrollmentRepository.save(enrollment);
+
+        return new EnrollmentDTO(
+                updated.getId(),
+                updated.getStudent().getId(),
+                updated.getStudent().getName(),
+                updated.getCourse().getId(),
+                updated.getCourse().getCourseName(),
+                updated.getEnrolledDate(),
+                updated.getGrade(),
+                updated.getAttendance()
+        );
+    }
+
+    // delete enrollment
+    public void deleteEnrollment(Long id) {
+        enrollmentRepository.deleteById(id);
+    }
+
+
 }

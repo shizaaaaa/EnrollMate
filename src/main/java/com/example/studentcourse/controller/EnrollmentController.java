@@ -46,5 +46,22 @@ public class EnrollmentController {
     public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByCourseId(@PathVariable Long courseId) {
         return ResponseEntity.ok(enrollmentService.getEnrollmentsByCourseId(courseId));
     }
+
+    // update enrollment
+    @PutMapping("/{id}")
+    public ResponseEntity<EnrollmentDTO> updateEnrollment(
+            @PathVariable Long id,
+            @RequestBody EnrollmentRequestDTO requestDTO) {
+        return ResponseEntity.ok(enrollmentService.updateEnrollment(id, requestDTO));
+    }
+
+    // delete enrollment
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEnrollment(@PathVariable Long id) {
+        enrollmentService.deleteEnrollment(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
 
