@@ -18,7 +18,7 @@ public class EnrollmentDTO {
 
     private Integer attendance;
 
-    // Constructors
+
     public EnrollmentDTO() {}
 
     public EnrollmentDTO(Long id, Long studentId, String studentName, Long courseId, String courseName,
@@ -33,7 +33,6 @@ public class EnrollmentDTO {
         this.attendance = attendance;
     }
 
-    // Getters & Setters
 
     public Long getId() { return id; }
 

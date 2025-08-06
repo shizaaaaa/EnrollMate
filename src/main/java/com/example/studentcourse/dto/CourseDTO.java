@@ -6,7 +6,7 @@ public class CourseDTO {
     private String courseCode;
     private String description;
 
-    // Constructors
+
     public CourseDTO() {}
 
     public CourseDTO(Long id, String courseName, String courseCode, String description) {
@@ -17,7 +17,6 @@ public class CourseDTO {
     }
 
 
-    // Getters & Setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

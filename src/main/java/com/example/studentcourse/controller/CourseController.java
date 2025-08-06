@@ -7,7 +7,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -31,13 +33,13 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
-    // get course by ID
+    // get course by id
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id) {
         return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
-    // get course by course code [NATIVE]
+    // get course by course code NATIVE
     @GetMapping("/code/{courseCode}")
     public ResponseEntity<CourseDTO> getCourseByCode(@PathVariable String courseCode) {
         return ResponseEntity.ok(courseService.getCourseByCode(courseCode));
@@ -56,10 +58,13 @@ public class CourseController {
         return ResponseEntity.ok(courseService.updateCourse(id, requestDTO));
     }
 
-    // delete course
+    // delete course -- diff way than the one in student cont.
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Map<String, String>> deleteCourse (@PathVariable Long id){
+            String message = courseService.deleteCourse(id);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", message);
+            return ResponseEntity.ok(response);
     }
+
 }

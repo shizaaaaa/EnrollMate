@@ -23,7 +23,6 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    // create course
     public CourseDTO createCourse(CourseRequestDTO requestDTO) {
         logger.info("Creating new course: {}", requestDTO.getCourseName());
         Course course = new Course();
@@ -36,7 +35,7 @@ public class CourseService {
         return new CourseDTO(saved.getId(), saved.getCourseName(), saved.getCourseCode(), saved.getDescription());
     }
 
-    // Get all courses
+
     public List<CourseDTO> getAllCourses() {
         logger.info("Fetching all courses");
         return courseRepository.findAll().stream()
@@ -85,8 +84,13 @@ public class CourseService {
         return new CourseDTO(updated.getId(), updated.getCourseName(), updated.getCourseCode(), updated.getDescription());
     }
 
-    public void deleteCourse(Long id) {
+    public String deleteCourse(Long id) {
+            Course course = courseRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Course not found"));
+        String courseName = course.getCourseName();
         logger.info("Deleting course with ID: {}", id);
-        courseRepository.deleteById(id);
+        courseRepository.delete(course);
+
+        return "Deleted course \"" + courseName + "\" (ID: " + id + ")";
     }
 }

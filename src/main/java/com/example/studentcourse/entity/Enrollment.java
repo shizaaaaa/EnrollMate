@@ -24,7 +24,7 @@ public class Enrollment {
 
     private Integer attendance;
 
-    // Constructors
+
     public Enrollment() {}
 
     public Enrollment(Student student, Course course, LocalDate enrolledDate, String grade, Integer attendance) {
@@ -35,7 +35,7 @@ public class Enrollment {
         this.attendance = attendance;
     }
 
-    // Getters and Setters
+
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

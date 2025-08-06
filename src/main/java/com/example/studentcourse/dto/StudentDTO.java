@@ -5,7 +5,6 @@ public class StudentDTO {
     private String name;
     private String email;
 
-    // Constructors
     public StudentDTO() {}
 
     public StudentDTO(Long id, String name, String email) {
@@ -14,7 +13,6 @@ public class StudentDTO {
         this.email = email;
     }
 
-    // Getters & Setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

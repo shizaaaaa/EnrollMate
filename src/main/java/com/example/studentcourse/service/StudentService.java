@@ -76,8 +76,17 @@ public class StudentService {
         return new StudentDTO(updated.getId(), updated.getName(), updated.getEmail());
     }
 
-    public void deleteStudent(Long id) {
+    public String deleteStudent(Long id) {
         logger.info("Deleting student with ID: {}", id);
-        studentRepository.deleteById(id);
+
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Student not found"));
+
+        studentRepository.delete(student);
+        return "Deleted student with ID: " + student.getId() + " and name: " + student.getName();
+
     }
+
+
+
 }

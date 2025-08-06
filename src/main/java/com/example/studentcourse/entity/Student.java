@@ -20,7 +20,6 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Enrollment> enrollments = new HashSet<>();
 
-    // Constructors
     public Student() {}
 
     public Student(String name, String email) {
@@ -28,7 +27,6 @@ public class Student {
         this.email = email;
     }
 
-    // Getters - setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

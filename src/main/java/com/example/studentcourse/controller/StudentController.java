@@ -19,19 +19,19 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // create student
+    //create student
     @PostMapping
     public ResponseEntity<StudentDTO> createStudent(@Valid @RequestBody StudentRequestDTO requestDTO) {
         return ResponseEntity.ok(studentService.createStudent(requestDTO));
     }
 
-    // get all students
+    //get all students
     @GetMapping
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
-    // get student by id
+    //get student by id
     @GetMapping("/{id}")
     public ResponseEntity<StudentDTO> getStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentById(id));
@@ -53,8 +53,10 @@ public class StudentController {
 
     //delete student
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
+        String message = studentService.deleteStudent(id);
+        return ResponseEntity.ok().body(
+                java.util.Map.of("message", message)
+        );
     }
 }

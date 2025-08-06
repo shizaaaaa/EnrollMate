@@ -12,7 +12,6 @@ public class StudentRequestDTO {
     @NotBlank(message = "Email is required")
     private String email;
 
-    // Constructors
     public StudentRequestDTO() {}
 
     public StudentRequestDTO(String name, String email) {
@@ -20,7 +19,6 @@ public class StudentRequestDTO {
         this.email = email;
     }
 
-    // Getters & Setters
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }

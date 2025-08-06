@@ -11,7 +11,6 @@ public class CourseRequestDTO {
 
     private String description;
 
-    // Constructors
     public CourseRequestDTO() {}
 
     public CourseRequestDTO(String courseName, String description, String courseCode) {
@@ -20,7 +19,7 @@ public class CourseRequestDTO {
         this.courseCode = courseCode;
     }
 
-    // Getters & Setters
+
     public String getCourseName() { return courseName; }
 
     public void setCourseName(String courseName) { this.courseName = courseName; }

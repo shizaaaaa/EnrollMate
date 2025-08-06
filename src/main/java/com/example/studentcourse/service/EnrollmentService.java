@@ -35,7 +35,7 @@ public class EnrollmentService {
         this.courseRepository = courseRepository;
     }
 
-    // enroll a student in course
+
     public EnrollmentDTO enrollStudent(Long studentId, Long courseId, String grade, Integer attendance) {
         logger.info("Enrolling student ID {} into course ID {}", studentId, courseId);
 
@@ -73,7 +73,7 @@ public class EnrollmentService {
         );
     }
 
-    // get all enrollments
+    //get all enrollments
     public List<EnrollmentDTO> getAllEnrollments() {
         logger.info("Fetching all enrollments");
         return enrollmentRepository.findAll().stream()
@@ -90,7 +90,7 @@ public class EnrollmentService {
                 .collect(Collectors.toList());
     }
 
-    // get enrollments by student
+    //get enrollments by student
     public List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId) {
         logger.info("Fetching enrollments for student ID: {}", studentId);
         return enrollmentRepository.findAll().stream()
@@ -108,7 +108,7 @@ public class EnrollmentService {
                 .collect(Collectors.toList());
     }
 
-    // get enrollments by course
+    //enrollments by course
     public List<EnrollmentDTO> getEnrollmentsByCourseId(Long courseId) {
         logger.info("Fetching enrollments for course ID: {}", courseId);
         return enrollmentRepository.findAll().stream()
@@ -126,7 +126,7 @@ public class EnrollmentService {
                 .collect(Collectors.toList());
     }
 
-    // update enrollment by id
+
     public EnrollmentDTO updateEnrollment(Long id, EnrollmentRequestDTO requestDTO) {
         Enrollment enrollment = enrollmentRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Enrollment not found"));
@@ -148,7 +148,7 @@ public class EnrollmentService {
         );
     }
 
-    // delete enrollment
+
     public void deleteEnrollment(Long id) {
         enrollmentRepository.deleteById(id);
     }
