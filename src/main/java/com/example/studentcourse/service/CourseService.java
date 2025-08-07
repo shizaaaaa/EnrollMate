@@ -62,7 +62,13 @@ public class CourseService {
 
     public List<CourseDTO> searchCoursesByDescription(String keyword) {
         logger.info("Searching courses with description like: {}", keyword);
-        return courseRepository.findByDescriptionLike(keyword).stream()
+        List<Course> courses = courseRepository.findByDescriptionLike(keyword);
+
+        if (courses.isEmpty()) {
+            throw new EntityNotFoundException("No courses found with description: " + keyword);
+        }
+
+        return courses.stream()
                 .map(c -> new CourseDTO(c.getId(), c.getCourseName(), c.getCourseCode(), c.getDescription()))
                 .collect(Collectors.toList());
     }
