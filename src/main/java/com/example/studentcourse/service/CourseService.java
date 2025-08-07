@@ -67,10 +67,7 @@ public class CourseService {
         if (courses.isEmpty()) {
             throw new EntityNotFoundException("No courses found with description: " + keyword);
         }
-
-        return courses.stream()
-                .map(c -> new CourseDTO(c.getId(), c.getCourseName(), c.getCourseCode(), c.getDescription()))
-                .collect(Collectors.toList());
+        return courses.stream().map(c -> new CourseDTO(c.getId(), c.getCourseName(), c.getCourseCode(), c.getDescription())).collect(Collectors.toList());
     }
 
     public CourseDTO updateCourse(Long id, CourseRequestDTO requestDTO) {
